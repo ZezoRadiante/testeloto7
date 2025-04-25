@@ -32,7 +32,7 @@ class StripeIntegration:
     def __init__(self, api_key=None):
         """Inicializa a integração com o Stripe"""
         # Em produção, a chave seria armazenada de forma segura e não hardcoded
-        self.api_key = api_key or os.environ.get('STRIPE_API_KEY', 'sk_test_51OxYzLKmJJGy8UzVCONXYZ')
+        self.api_key = api_key or os.environ.get('STRIPE_API_KEY', 'sk_test_51RAaFgCD34s5xyX8rSsSzWIJGgogtxumykcNuxOwsvNAd1Bvq93Zuw1du38Zb96sJmVstt3FWv2ARhRs16QPTYBm00ZjEg3FxN')
         stripe.api_key = self.api_key
         
         # Definição dos planos de assinatura
