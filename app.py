@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, jsonify, redirect
 import os
 import logging
@@ -182,3 +181,29 @@ def webhook_stripe():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+from scripts.auth.auth_api import AuthAPI
+from flask import make_response
+
+auth_api = AuthAPI()
+
+@app.route("/api/login", methods=["POST"])
+def api_login():
+    data = request.get_json() or request.form
+
+    email = data.get("email")
+    password = data.get("password")
+
+    if not email or not password:
+        return jsonify({"success": False, "message": "Email e senha são obrigatórios"}), 400
+
+    result = auth_api.login(email, password)
+
+    if not result or not result.get("success"):
+        return jsonify({"success": False, "message": "Credenciais inválidas"}), 401
+
+    token = result.get("token")
+    response = make_response(jsonify({"success": True, "message": "Login realizado com sucesso"}))
+    response.set_cookie("auth_token", token, httponly=True, max_age=86400)
+
+    return response
