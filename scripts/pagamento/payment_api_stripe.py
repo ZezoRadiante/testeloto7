@@ -1,49 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, jsonify, redirect
+"""
+API Flask para o sistema de pagamento com Stripe do Gerador de Jogos da Lotofácil
+"""
+
 import os
-import logging
 import json
+from flask import Flask, request, jsonify, render_template, send_file, redirect
 from datetime import datetime
-from scripts.pagamento.stripe_integration import StripeIntegration
+import logging
+from stripe_integration import StripeIntegration
 
-# Corrigir conflitos com arquivo 'logs'
-if os.path.isfile("logs"):
-    os.remove("logs")
-os.makedirs("logs", exist_ok=True)
-
-# Configurar logging para arquivo relativo
+# Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='logs/app.log',
+    filename='/home/ubuntu/lotofacil/logs/api.log',
     filemode='a'
 )
+logger = logging.getLogger('payment_api_stripe')
+
+# Inicializar Flask
+app = Flask(__name__, 
+            template_folder='/home/ubuntu/lotofacil/templates',
+            static_folder='/home/ubuntu/lotofacil/static')
 
 # Inicializar integração com Stripe
 stripe_integration = StripeIntegration()
 
 # Criar diretórios necessários
-os.makedirs('data/assinaturas', exist_ok=True)
-os.makedirs('data/usuarios', exist_ok=True)
-os.makedirs('data/emails', exist_ok=True)
+os.makedirs('/home/ubuntu/lotofacil/logs', exist_ok=True)
+os.makedirs('/home/ubuntu/lotofacil/data/assinaturas', exist_ok=True)
+os.makedirs('/home/ubuntu/lotofacil/data/usuarios', exist_ok=True)
+os.makedirs('/home/ubuntu/lotofacil/data/emails', exist_ok=True)
 
-app = Flask(__name__)
-
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    """Rota para a página inicial"""
+    return render_template('index.html')
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template("dashboard.html")
-
-@app.route("/login")
+@app.route('/login')
 def login():
-    return render_template("login.html")
+    """Rota para a página de login"""
+    return render_template('login.html')
 
-@app.route("/pagamento")
+@app.route('/pagamento')
 def pagamento():
-    return render_template("pagamento.html")
+    """Rota para a página de pagamento"""
+    return render_template('pagamento.html')
+
+@app.route('/dashboard')
+def dashboard():
+    """Rota para o dashboard do usuário"""
+    return render_template('dashboard.html')
 
 @app.route('/pagamento/sucesso')
 def pagamento_sucesso():
@@ -85,7 +95,7 @@ def criar_assinatura():
             "payment_url": subscription_data['payment_url']
         })
     except Exception as e:
-        logging.error(f"Erro ao criar assinatura: {str(e)}")
+        logger.error(f"Erro ao criar assinatura: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/assinatura/status/<subscription_id>', methods=['GET'])
@@ -102,7 +112,7 @@ def verificar_status(subscription_id):
         status = stripe_integration.check_subscription_status(subscription_id)
         return jsonify(status)
     except Exception as e:
-        logging.error(f"Erro ao verificar status da assinatura {subscription_id}: {str(e)}")
+        logger.error(f"Erro ao verificar status da assinatura {subscription_id}: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/usuario/login', methods=['POST'])
@@ -129,7 +139,7 @@ def login_usuario():
         
         # Em um ambiente real, isso seria feito em um banco de dados
         # Aqui estamos verificando o arquivo JSON
-        file_path = f'data/usuarios/{email.replace("@", "_").replace(".", "_")}.json'
+        file_path = f'/home/ubuntu/lotofacil/data/usuarios/{email.replace("@", "_").replace(".", "_")}.json'
         
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -160,7 +170,36 @@ def login_usuario():
                 "error": "Usuário não encontrado"
             }), 404
     except Exception as e:
-        logging.error(f"Erro ao realizar login: {str(e)}")
+        logger.error(f"Erro ao realizar login: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/usuario/verificar-email', methods=['POST'])
+def verificar_email():
+    """
+    Verifica se um e-mail já está cadastrado
+    
+    Espera um JSON com o seguinte campo:
+    - email: E-mail a ser verificado
+    
+    Retorna um JSON indicando se o e-mail já está cadastrado
+    """
+    try:
+        data = request.json
+        
+        # Validar dados
+        if not data or 'email' not in data:
+            return jsonify({"error": "Dados incompletos"}), 400
+        
+        email = data['email']
+        file_path = f'/home/ubuntu/lotofacil/data/usuarios/{email.replace("@", "_").replace(".", "_")}.json'
+        
+        exists = os.path.exists(file_path)
+        
+        return jsonify({
+            "exists": exists
+        })
+    except Exception as e:
+        logger.error(f"Erro ao verificar e-mail: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/webhook/stripe', methods=['POST'])
@@ -177,8 +216,9 @@ def webhook_stripe():
         
         return jsonify(result)
     except Exception as e:
-        logging.error(f"Erro ao processar webhook: {str(e)}")
+        logger.error(f"Erro ao processar webhook: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    # Iniciar servidor Flask
     app.run(host='0.0.0.0', port=5000, debug=True)

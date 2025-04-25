@@ -1,0 +1,10 @@
+2025-04-24 22:23:26,318 - stripe - INFO - message='Request to Stripe api' method=post url=https://api.stripe.com/v1/customers
+2025-04-24 22:23:26,398 - stripe - INFO - message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=401
+2025-04-24 22:23:26,398 - stripe - INFO - error_code=None error_message='Invalid API Key provided: sk_test_*******************NXYZ' error_param=None error_type=invalid_request_error message='Stripe v1 API error received'
+2025-04-24 22:23:26,399 - stripe_integration - ERROR - Erro ao criar cliente no Stripe: Invalid API Key provided: sk_test_*******************NXYZ
+2025-04-24 22:23:26,399 - stripe_integration - ERROR - Erro ao criar assinatura no Stripe: Invalid API Key provided: sk_test_*******************NXYZ
+2025-04-24 22:23:26,399 - stripe - INFO - message='Request to Stripe api' method=post url=https://api.stripe.com/v1/customers
+2025-04-24 22:23:26,404 - stripe - INFO - message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=401
+2025-04-24 22:23:26,404 - stripe - INFO - error_code=None error_message='Invalid API Key provided: sk_test_*******************NXYZ' error_param=None error_type=invalid_request_error message='Stripe v1 API error received'
+2025-04-24 22:23:26,404 - stripe_integration - ERROR - Erro ao criar cliente no Stripe: Invalid API Key provided: sk_test_*******************NXYZ
+2025-04-24 22:23:26,404 - stripe_integration - ERROR - Erro ao criar assinatura no Stripe: Invalid API Key provided: sk_test_*******************NXYZ

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado - Gerador de Jogos da Lotofácil</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Canvas para efeito Matrix será inserido via JavaScript -->
+    
+    <div class="container">
+        <header>
+            <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#estrategias">Estratégias</a></li>
+                    <li><a href="index.html#planos">Planos</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="payment-success">
+            <h1>Pagamento Confirmado!</h1>
+            
+            <div class="success-message">
+                <p>Seu pagamento foi processado com sucesso. Obrigado por assinar o Gerador de Jogos da Lotofácil!</p>
+                <p>Você receberá um e-mail com suas credenciais de acesso em até 5 minutos.</p>
+                <p>Caso não receba o e-mail, verifique sua caixa de spam ou entre em contato conosco.</p>
+            </div>
+            
+            <div class="next-steps">
+                <h2>Próximos Passos</h2>
+                <ol>
+                    <li>Verifique seu e-mail para obter suas credenciais de acesso</li>
+                    <li>Faça login no sistema usando as credenciais recebidas</li>
+                    <li>Comece a utilizar as estratégias avançadas para gerar seus jogos</li>
+                </ol>
+            </div>
+            
+            <div class="buttons">
+                <a href="login.html" class="btn btn-primary">Ir para Login</a>
+                <a href="index.html" class="btn">Voltar para Início</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Gerador de Jogos da Lotofácil. Todos os direitos reservados.</p>
+            <p>Este site não tem vínculo com a Caixa Econômica Federal ou com as Loterias Caixa.</p>
+        </footer>
+    </div>
+    
+    <script src="../static/js/matrix.js"></script>
+    <script>
+        // Verificar status da assinatura ao carregar a página
+        document.addEventListener('DOMContentLoaded', async function() {
+            const sessionId = new URLSearchParams(window.location.search).get('session_id');
+            
+            if (sessionId) {
+                try {
+                    // Em um ambiente real, faríamos uma chamada para verificar o status da sessão
+                    // Aqui estamos apenas simulando uma verificação bem-sucedida
+                    console.log('Sessão de checkout confirmada:', sessionId);
+                } catch (error) {
+                    console.error('Erro ao verificar sessão:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
