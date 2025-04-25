@@ -5,3 +5,7 @@ requests
 Pillow
 qrcode
 PyJWT>=2.0.0
+python-dotenv
+Flask-Cors
+Flask-Session
+bcrypt
