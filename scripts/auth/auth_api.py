@@ -12,7 +12,7 @@ import logging
 from datetime import datetime
 
 # Importar o sistema de autenticação
-from scripts.auth.auth_system import AuthSystem
+from auth_system import AuthSystem
 
 # Configuração de logging
 logging.basicConfig(
@@ -29,11 +29,7 @@ class AuthAPI:
     def __init__(self):
         """Inicializa a API"""
         # Criar diretórios necessários
-import os
-
-# Define um caminho relativo para a pasta logs
-log_dir = os.path.join(os.getcwd(), 'logs')
-os.makedirs(log_dir, exist_ok=True)
+        os.makedirs('/home/ubuntu/lotofacil/logs', exist_ok=True)
         
         # Inicializar sistema de autenticação
         self.auth = AuthSystem()

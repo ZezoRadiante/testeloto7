@@ -32,21 +32,21 @@ class StripeIntegration:
     def __init__(self, api_key=None):
         """Inicializa a integração com o Stripe"""
         # Em produção, a chave seria armazenada de forma segura e não hardcoded
-        self.api_key = api_key or os.environ.get('STRIPE_API_KEY', 'sk_test_51RAaFgCD34s5xyX8rSsSzWIJGgogtxumykcNuxOwsvNAd1Bvq93Zuw1du38Zb96sJmVstt3FWv2ARhRs16QPTYBm00ZjEg3FxN')
+        self.api_key = api_key or os.environ.get('STRIPE_API_KEY', 'sk_test_51OxYzLKmJJGy8UzVCONXYZ')
         stripe.api_key = self.api_key
         
         # Definição dos planos de assinatura
         self.plans = {
             'basic': {
                 'name': 'Básico',
-                'price_id': 'price_1RHcZYCD34s5xyX8e6yVXSM8',  # ID do preço no Stripe
+                'price_id': 'price_1OxZ0LKmJJGy8UzVabcdef123',  # ID do preço no Stripe
                 'amount': 3990,  # em centavos
                 'interval': 'month',
                 'description': 'Plano Básico - Gerador de Jogos da Lotofácil'
             },
             'premium': {
                 'name': 'Premium',
-                'price_id': 'price_1RHcZtCD34s5xyX80whtvZU3',  # ID do preço no Stripe
+                'price_id': 'price_1OxZ0YKmJJGy8UzVxyzabc456',  # ID do preço no Stripe
                 'amount': 6990,  # em centavos
                 'interval': 'month',
                 'description': 'Plano Premium - Gerador de Jogos da Lotofácil'
