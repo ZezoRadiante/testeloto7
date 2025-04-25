@@ -1,10 +1,11 @@
 
 from flask import Flask, render_template, redirect, url_for, session
+import os
 import stripe
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta'
-stripe.api_key = 'sk_test_51RAaFgCD34s5xyX8rSsSzWIJGgogtxumykcNuxOwsvNAd1Bvq93Zuw1du38Zb96sJmVstt3FWv2ARhRs16QPTYBm00ZjEg3FxN'
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 YOUR_DOMAIN = 'https://seusite.com'  # substitua pela URL do seu site no Render
 
