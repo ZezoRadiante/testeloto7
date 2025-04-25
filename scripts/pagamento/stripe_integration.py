@@ -15,10 +15,13 @@ import hashlib
 import uuid
 
 # Configuração de logging
+import os
+# Criar diretório de logs se não existir
+os.makedirs('logs', exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='/home/ubuntu/projeto/logs/pagamento.log',
+    filename=os.path.join('logs', 'pagamento.log'),
     filemode='a'
 )
 logger = logging.getLogger('stripe_integration')
@@ -160,7 +163,7 @@ class StripeIntegration:
         Aqui estamos salvando em um arquivo JSON para simulação.
         """
         # Criar diretório de dados se não existir
-        os.makedirs('/home/ubuntu/projeto/data/assinaturas', exist_ok=True)
+        os.makedirs(os.path.join('data', 'assinaturas'), exist_ok=True)
         
         # Dados a serem salvos
         data_to_save = {
@@ -177,7 +180,7 @@ class StripeIntegration:
         }
         
         # Salvar em arquivo JSON
-        file_path = f'/home/ubuntu/projeto/data/assinaturas/{subscription_data["id"]}.json'
+        file_path = os.path.join('data', 'assinaturas', f'{subscription_data["id"]}.json')
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data_to_save, f, ensure_ascii=False, indent=4)
         
@@ -315,8 +318,8 @@ class StripeIntegration:
         }
         
         # Salvar dados do usuário
-        os.makedirs('/home/ubuntu/projeto/data/usuarios', exist_ok=True)
-        file_path = f'/home/ubuntu/projeto/data/usuarios/{subscription_data["user_email"].replace("@", "_").replace(".", "_")}.json'
+        os.makedirs(os.path.join('data', 'usuarios'), exist_ok=True)
+        file_path = os.path.join('data', 'usuarios', f'{subscription_data["user_email"].replace("@", "_").replace(".", "_")}.json')
         
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(user_data, f, ensure_ascii=False, indent=4)
@@ -366,8 +369,8 @@ class StripeIntegration:
         """
         
         # Salvar e-mail em arquivo para simulação
-        os.makedirs('/home/ubuntu/projeto/data/emails', exist_ok=True)
-        file_path = f'/home/ubuntu/projeto/data/emails/{user_data["email"].replace("@", "_").replace(".", "_")}.txt'
+        os.makedirs(os.path.join('data', 'emails'), exist_ok=True)
+        file_path = os.path.join('data', 'emails', f'{user_data["email"].replace("@", "_").replace(".", "_")}.txt')
         
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(email_content)
@@ -402,10 +405,10 @@ def test_integration():
 
 if __name__ == "__main__":
     # Criar diretórios necessários
-    os.makedirs('/home/ubuntu/projeto/logs', exist_ok=True)
-    os.makedirs('/home/ubuntu/projeto/data/assinaturas', exist_ok=True)
-    os.makedirs('/home/ubuntu/projeto/data/usuarios', exist_ok=True)
-    os.makedirs('/home/ubuntu/projeto/data/emails', exist_ok=True)
+    os.makedirs('logs', exist_ok=True)
+    os.makedirs(os.path.join('data', 'assinaturas'), exist_ok=True)
+    os.makedirs(os.path.join('data', 'usuarios'), exist_ok=True)
+    os.makedirs(os.path.join('data', 'emails'), exist_ok=True)
     
     # Testar integração
     test_integration()
