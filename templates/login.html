@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gerador de Jogos da Lotofácil</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <!-- Canvas para efeito Matrix será inserido via JavaScript -->
@@ -14,9 +14,9 @@
             <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="index.html#estrategias">Estratégias</a></li>
-                    <li><a href="index.html#planos">Planos</a></li>
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/#estrategias">Estratégias</a></li>
+                    <li><a href="/#planos">Planos</a></li>
                 </ul>
             </nav>
         </header>
@@ -40,7 +40,7 @@
             
             <div class="login-options">
                 <p><a href="#" onclick="forgotPassword()">Esqueceu sua senha?</a></p>
-                <p>Ainda não tem uma conta? <a href="index.html#planos">Assine agora</a></p>
+                <p>Ainda não tem uma conta? <a href="/#planos">Assine agora</a></p>
             </div>
         </section>
         
@@ -50,7 +50,7 @@
         </footer>
     </div>
     
-    <script src="../static/js/matrix.js"></script>
+    <script src="/static/js/matrix.js"></script>
     <script>
         // Função para lidar com o envio do formulário
         document.getElementById('login-form').addEventListener('submit', function(e) {
@@ -62,7 +62,7 @@
             // Simulação de login (em produção, isso seria uma chamada AJAX para o backend)
             if (email && password) {
                 // Redirecionar para o dashboard após login bem-sucedido
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             } else {
                 alert('Por favor, preencha todos os campos.');
             }
