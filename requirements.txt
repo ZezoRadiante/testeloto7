@@ -4,3 +4,4 @@ stripe
 requests
 Pillow
 qrcode
+PyJWT>=2.0.0
