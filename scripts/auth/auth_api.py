@@ -29,7 +29,11 @@ class AuthAPI:
     def __init__(self):
         """Inicializa a API"""
         # Criar diretórios necessários
-        os.makedirs('/home/ubuntu/lotofacil/logs', exist_ok=True)
+import os
+
+# Define um caminho relativo para a pasta logs
+log_dir = os.path.join(os.getcwd(), 'logs')
+os.makedirs(log_dir, exist_ok=True)
         
         # Inicializar sistema de autenticação
         self.auth = AuthSystem()
