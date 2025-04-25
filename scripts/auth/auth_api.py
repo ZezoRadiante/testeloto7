@@ -12,7 +12,7 @@ import logging
 from datetime import datetime
 
 # Importar o sistema de autenticação
-from auth_system import AuthSystem
+from scripts.auth.auth_system import AuthSystem
 
 # Configuração de logging
 logging.basicConfig(
