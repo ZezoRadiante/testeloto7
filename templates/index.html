@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Jogos da Lotofácil - Estratégias Avançadas</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Canvas para efeito Matrix será inserido via JavaScript -->
+    
+    <div class="container">
+        <header>
+            <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
+            <nav>
+                <ul>
+                    <li><a href="#estrategias">Estratégias</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#resultados">Resultados</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="hero">
+            <h1 class="glow-text">Aumente suas chances de ganhar na Lotofácil</h1>
+            <p>Utilize estratégias avançadas e Inteligência Artificial para gerar jogos com maior probabilidade de acerto.</p>
+            <div class="buttons">
+                <a href="#planos" class="btn btn-primary btn-large">Assinar Agora</a>
+                <a href="#como-funciona" class="btn btn-large">Saiba Mais</a>
+            </div>
+        </section>
+        
+        <section id="estrategias">
+            <h2>Estratégias Avançadas</h2>
+            <p>Nosso sistema utiliza diversas estratégias matemáticas e estatísticas para aumentar suas chances de ganhar na Lotofácil:</p>
+            
+            <div class="dashboard">
+                <div class="dashboard-card">
+                    <h3>Ciclo de Dezenas Fora</h3>
+                    <p>Nossa estratégia exclusiva identifica 10 dezenas que ficam fora do sorteio e acompanha quando cada uma delas é sorteada nos concursos seguintes. Quando todas as 10 dezenas forem sorteadas, o ciclo se fecha e um novo ciclo se inicia.</p>
+                    <p>Esta estratégia permite identificar quais dezenas têm maior probabilidade de serem sorteadas nos próximos concursos.</p>
+                    <p><strong>Exclusivo para assinantes Premium!</strong></p>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Análise de Padrões</h3>
+                    <p>Identificamos padrões recorrentes nos sorteios anteriores, como distribuição de números pares e ímpares, soma dos números sorteados, e sequências numéricas.</p>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Inteligência Artificial</h3>
+                    <p>Nossa IA LSTM (Long Short-Term Memory) com regularização L1 e L2 analisa todos os sorteios anteriores para identificar tendências e padrões ocultos que escapam à análise humana.</p>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Fechamentos Matemáticos</h3>
+                    <p>Utilizamos técnicas de fechamento matemático para criar jogos que garantem uma quantidade mínima de acertos, maximizando suas chances.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="planos">
+            <h2>Escolha seu Plano</h2>
+            <div class="plans">
+                <div class="plan-card">
+                    <div class="plan-title">Básico</div>
+                    <div class="plan-price">R$ 39,90</div>
+                    <ul class="plan-features">
+                        <li>Acesso às estratégias básicas</li>
+                        <li>Gerador de jogos com análise estatística</li>
+                        <li>Histórico de resultados</li>
+                        <li>Análise de padrões</li>
+                        <li>Suporte por e-mail</li>
+                    </ul>
+                    <a href="pagamento.html?plano=basico" class="btn btn-primary">Assinar Agora</a>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-title">Premium</div>
+                    <div class="plan-price">R$ 69,90</div>
+                    <ul class="plan-features">
+                        <li>Todas as funcionalidades do plano Básico</li>
+                        <li><strong>Estratégia exclusiva de Ciclo de Dezenas Fora</strong></li>
+                        <li>Análise avançada com IA LSTM</li>
+                        <li>Recomendações personalizadas</li>
+                        <li>Prioridade no suporte</li>
+                    </ul>
+                    <a href="pagamento.html?plano=premium" class="btn btn-primary">Assinar Agora</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="como-funciona">
+            <h2>Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Escolha seu plano</h3>
+                    <p>Selecione entre os planos Básico e Premium de acordo com suas necessidades.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>2. Faça o pagamento via PIX</h3>
+                    <p>Realize o pagamento de forma rápida e segura utilizando o QR Code PIX gerado.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>3. Receba suas credenciais</h3>
+                    <p>Após a confirmação do pagamento, você receberá um e-mail com seu login e senha de acesso.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>4. Acesse a plataforma</h3>
+                    <p>Utilize suas credenciais para acessar a plataforma e começar a gerar jogos com maior probabilidade de acerto.</p>
+                </div>
+            </div>
+            
+            <div class="demo">
+                <h3>Demonstração</h3>
+                <p>Veja como funciona nossa plataforma:</p>
+                
+                <div class="demo-content">
+                    <div class="demo-section">
+                        <h4>Gerador de Jogos</h4>
+                        <div id="generated-games" class="generated-games-demo">
+                            <!-- Jogos serão gerados via JavaScript -->
+                        </div>
+                        <button class="btn" onclick="generateDemoGames()">Gerar Jogos de Demonstração</button>
+                    </div>
+                    
+                    <div class="demo-section">
+                        <h4>Treinamento da IA</h4>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-text">0%</div>
+                            </div>
+                        </div>
+                        <button id="train-button" class="btn" onclick="simulateTraining()">Iniciar Treinamento</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resultados">
+            <h2>Últimos Resultados da Lotofácil</h2>
+            <div class="latest-results">
+                <div class="result">
+                    <h3>Concurso 3374 (23/04/2025)</h3>
+                    <div class="lottery-numbers">
+                        <div class="lottery-ball">04</div>
+                        <div class="lottery-ball">05</div>
+                        <div class="lottery-ball">06</div>
+                        <div class="lottery-ball">07</div>
+                        <div class="lottery-ball">08</div>
+                        <div class="lottery-ball">10</div>
+                        <div class="lottery-ball">11</div>
+                        <div class="lottery-ball">12</div>
+                        <div class="lottery-ball">14</div>
+                        <div class="lottery-ball">15</div>
+                        <div class="lottery-ball">17</div>
+                        <div class="lottery-ball">18</div>
+                        <div class="lottery-ball">20</div>
+                        <div class="lottery-ball">21</div>
+                        <div class="lottery-ball">24</div>
+                    </div>
+                </div>
+                
+                <div class="result">
+                    <h3>Concurso 3373 (22/04/2025)</h3>
+                    <div class="lottery-numbers">
+                        <div class="lottery-ball">01</div>
+                        <div class="lottery-ball">03</div>
+                        <div class="lottery-ball">04</div>
+                        <div class="lottery-ball">06</div>
+                        <div class="lottery-ball">10</div>
+                        <div class="lottery-ball">12</div>
+                        <div class="lottery-ball">13</div>
+                        <div class="lottery-ball">14</div>
+                        <div class="lottery-ball">15</div>
+                        <div class="lottery-ball">17</div>
+                        <div class="lottery-ball">19</div>
+                        <div class="lottery-ball">21</div>
+                        <div class="lottery-ball">22</div>
+                        <div class="lottery-ball">23</div>
+                        <div class="lottery-ball">24</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials">
+            <h2>Depoimentos de Assinantes</h2>
+            <div class="testimonial">
+                <p>"Depois que comecei a usar o Gerador de Jogos da Lotofácil, consegui aumentar significativamente meus acertos. Já fiz 14 pontos várias vezes e estou cada vez mais perto do prêmio máximo!"</p>
+                <div class="testimonial-author">Carlos S., São Paulo</div>
+            </div>
+            
+            <div class="testimonial">
+                <p>"A estratégia de Ciclo de Dezenas Fora é simplesmente incrível! Consigo identificar com muito mais precisão quais números têm maior probabilidade de sair nos próximos sorteios."</p>
+                <div class="testimonial-author">Mariana L., Rio de Janeiro</div>
+            </div>
+            
+            <div class="testimonial">
+                <p>"Vale cada centavo! A análise da IA me ajudou a entender padrões que eu jamais teria percebido sozinho. Recomendo o plano Premium para quem quer resultados realmente diferenciados."</p>
+                <div class="testimonial-author">Roberto A., Belo Horizonte</div>
+            </div>
+        </section>
+        
+        <section id="faq">
+            <h2>Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <h3>Como funciona o pagamento?</h3>
+                <p>O pagamento é realizado via PIX, utilizando a chave fornecida. Após a confirmação, você receberá suas credenciais de acesso por e-mail.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Posso cancelar minha assinatura?</h3>
+                <p>Sim, você pode cancelar sua assinatura a qualquer momento, sem taxas adicionais.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>As estratégias realmente funcionam?</h3>
+                <p>Nossas estratégias são baseadas em análises matemáticas e estatísticas dos sorteios anteriores, aumentando suas chances de acerto. No entanto, é importante lembrar que a Lotofácil é um jogo de azar e não podemos garantir ganhos.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Como funciona a estratégia de Ciclo de Dezenas Fora?</h3>
+                <p>Esta estratégia identifica 10 dezenas que ficam fora do sorteio e acompanha quando cada uma delas é sorteada nos concursos seguintes. Quando todas as 10 dezenas forem sorteadas, o ciclo se fecha e um novo ciclo se inicia. Isso permite identificar quais dezenas têm maior probabilidade de serem sorteadas nos próximos concursos.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>O que é a IA LSTM?</h3>
+                <p>LSTM (Long Short-Term Memory) é um tipo avançado de rede neural recorrente capaz de aprender dependências de longo prazo em sequências de dados. Nossa IA utiliza esta tecnologia com regularização L1 e L2 para analisar os sorteios anteriores e identificar padrões ocultos.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Gerador de Jogos da Lotofácil. Todos os direitos reservados.</p>
+            <p>Este site não tem vínculo com a Caixa Econômica Federal ou com as Loterias Caixa.</p>
+        </footer>
+    </div>
+    
+    <script src="../static/js/matrix.js"></script>
+</body>
+</html>

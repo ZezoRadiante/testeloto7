@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Gerador de Jogos da Lotofácil</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Canvas para efeito Matrix será inserido via JavaScript -->
+    
+    <div class="container">
+        <header>
+            <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#estrategias">Estratégias</a></li>
+                    <li><a href="index.html#planos">Planos</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="payment-container">
+            <h1>Pagamento</h1>
+            
+            <div id="plan-info" class="payment-info">
+                <!-- Informações do plano serão preenchidas via JavaScript -->
+                <h2>Plano selecionado: <span id="plan-name">Carregando...</span></h2>
+                <p>Valor: <strong id="plan-price">Carregando...</strong></p>
+                <p>Acesso: <strong>30 dias</strong></p>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Nome completo:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <h2>Pagamento via PIX</h2>
+            <p>Escaneie o QR Code abaixo ou copie a chave PIX para realizar o pagamento:</p>
+            
+            <div class="qr-code">
+                <!-- QR Code será gerado dinamicamente -->
+                <img src="../static/images/qr-code-pix.png" alt="QR Code PIX">
+            </div>
+            
+            <div class="payment-info">
+                <p>Chave PIX: <strong>42f51e7f-7586-4f26-a5b2-837ef34a0bfb</strong></p>
+                <button class="btn" onclick="copyPixKey()">Copiar Chave</button>
+            </div>
+            
+            <div class="payment-instructions">
+                <h3>Instruções:</h3>
+                <ol>
+                    <li>Abra o aplicativo do seu banco</li>
+                    <li>Acesse a área de PIX</li>
+                    <li>Escaneie o QR Code ou cole a chave PIX</li>
+                    <li>Informe o valor correspondente ao plano escolhido</li>
+                    <li>Confirme o pagamento</li>
+                </ol>
+                <p>Após a confirmação do pagamento, você receberá um e-mail com suas credenciais de acesso em até 5 minutos.</p>
+            </div>
+            
+            <div class="payment-verification">
+                <h3>Verificar status do pagamento:</h3>
+                <p id="payment-status">Aguardando pagamento...</p>
+                <button class="btn btn-primary" onclick="checkPaymentStatus()">Verificar Pagamento</button>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Gerador de Jogos da Lotofácil. Todos os direitos reservados.</p>
+            <p>Este site não tem vínculo com a Caixa Econômica Federal ou com as Loterias Caixa.</p>
+        </footer>
+    </div>
+    
+    <script src="../static/js/matrix.js"></script>
+    <script>
+        // Função para obter parâmetros da URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Preencher informações do plano
+        document.addEventListener('DOMContentLoaded', function() {
+            const plano = getUrlParameter('plano');
+            const planName = document.getElementById('plan-name');
+            const planPrice = document.getElementById('plan-price');
+            
+            if (plano === 'premium') {
+                planName.textContent = 'Premium';
+                planPrice.textContent = 'R$ 69,90';
+            } else {
+                planName.textContent = 'Básico';
+                planPrice.textContent = 'R$ 39,90';
+            }
+        });
+        
+        // Função para copiar a chave PIX
+        function copyPixKey() {
+            const pixKey = '42f51e7f-7586-4f26-a5b2-837ef34a0bfb';
+            navigator.clipboard.writeText(pixKey).then(function() {
+                alert('Chave PIX copiada para a área de transferência!');
+            }, function() {
+                alert('Não foi possível copiar a chave PIX. Por favor, copie manualmente.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gerador de Jogos da Lotofácil</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Canvas para efeito Matrix será inserido via JavaScript -->
+    
+    <div class="container">
+        <header>
+            <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
+            <nav>
+                <ul>
+                    <li><a href="#gerador">Gerador</a></li>
+                    <li><a href="#estrategias">Estratégias</a></li>
+                    <li><a href="#resultados">Resultados</a></li>
+                    <li><a href="#perfil">Meu Perfil</a></li>
+                    <li><a href="index.html">Sair</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="welcome">
+            <h1>Bem-vindo(a), <span id="user-name">Usuário</span>!</h1>
+            <p>Plano atual: <strong id="user-plan">Premium</strong></p>
+            <p>Validade: <strong id="user-validity">23/05/2025</strong></p>
+        </section>
+        
+        <section id="gerador">
+            <h2>Gerador de Jogos</h2>
+            
+            <div class="generator-options">
+                <div class="form-group">
+                    <label for="strategy">Estratégia:</label>
+                    <select id="strategy" name="strategy">
+                        <option value="balanced">Balanceada (Pares/Ímpares)</option>
+                        <option value="sequence">Sequências Numéricas</option>
+                        <option value="hot">Números Quentes</option>
+                        <option value="cold">Números Frios</option>
+                        <option value="cycle" id="cycle-option">Ciclo de Dezenas Fora</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="games-count">Quantidade de jogos:</label>
+                    <select id="games-count" name="games-count">
+                        <option value="1">1 jogo</option>
+                        <option value="5" selected>5 jogos</option>
+                        <option value="10">10 jogos</option>
+                        <option value="20">20 jogos</option>
+                        <option value="50">50 jogos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fixed-numbers">Números fixos (opcional):</label>
+                    <input type="text" id="fixed-numbers" name="fixed-numbers" placeholder="Ex: 1,5,10,25">
+                </div>
+                
+                <div class="form-group">
+                    <label for="excluded-numbers">Números excluídos (opcional):</label>
+                    <input type="text" id="excluded-numbers" name="excluded-numbers" placeholder="Ex: 2,7,13,19">
+                </div>
+                
+                <button id="generate-button" class="btn btn-primary btn-large">Gerar Jogos</button>
+            </div>
+            
+            <div id="generated-games" class="generated-games">
+                <!-- Jogos gerados serão exibidos aqui -->
+                <p class="empty-message">Clique em "Gerar Jogos" para criar suas combinações.</p>
+            </div>
+            
+            <div class="export-options">
+                <button class="btn">Imprimir Jogos</button>
+                <button class="btn">Exportar para PDF</button>
+                <button class="btn">Salvar no Histórico</button>
+            </div>
+        </section>
+        
+        <section id="estrategias">
+            <h2>Estratégias Avançadas</h2>
+            
+            <div class="strategy-tabs">
+                <button class="tab-button active" onclick="openTab('tab-statistics')">Estatísticas</button>
+                <button class="tab-button" onclick="openTab('tab-ai')">Análise IA</button>
+                <button class="tab-button" id="cycle-tab" onclick="openTab('tab-cycle')">Ciclo de Dezenas</button>
+            </div>
+            
+            <div id="tab-statistics" class="tab-content active">
+                <h3>Estatísticas dos Últimos Sorteios</h3>
+                
+                <div class="statistics-container">
+                    <div class="statistics-card">
+                        <h4>Frequência das Dezenas</h4>
+                        <div class="number-frequency">
+                            <!-- Frequência das dezenas será exibida aqui -->
+                            <div class="number-item">
+                                <div class="lottery-ball">01</div>
+                                <div class="frequency-bar" style="width: 75%;">75%</div>
+                            </div>
+                            <div class="number-item">
+                                <div class="lottery-ball">02</div>
+                                <div class="frequency-bar" style="width: 68%;">68%</div>
+                            </div>
+                            <div class="number-item">
+                                <div class="lottery-ball">03</div>
+                                <div class="frequency-bar" style="width: 62%;">62%</div>
+                            </div>
+                            <!-- Mais dezenas seriam exibidas aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="statistics-card">
+                        <h4>Padrões de Paridade</h4>
+                        <div class="parity-chart">
+                            <!-- Gráfico de paridade seria exibido aqui -->
+                            <p>Distribuição média: 8 pares e 7 ímpares</p>
+                        </div>
+                    </div>
+                    
+                    <div class="statistics-card">
+                        <h4>Soma dos Números</h4>
+                        <div class="sum-chart">
+                            <!-- Gráfico de soma seria exibido aqui -->
+                            <p>Faixa mais comum: 190-210</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-ai" class="tab-content">
+                <h3>Análise com Inteligência Artificial</h3>
+                
+                <div class="ai-controls">
+                    <button id="train-ai-button" class="btn btn-primary" onclick="simulateTraining()">Treinar IA com Dados Históricos</button>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-text">0%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ai-results">
+                    <h4>Previsões da IA para o Próximo Sorteio</h4>
+                    <p>Treine a IA para ver as previsões.</p>
+                    
+                    <div class="prediction-container" style="display: none;">
+                        <div class="prediction-group">
+                            <h5>Dezenas com maior probabilidade</h5>
+                            <div class="prediction-numbers">
+                                <!-- Números previstos seriam exibidos aqui -->
+                            </div>
+                        </div>
+                        
+                        <div class="prediction-group">
+                            <h5>Dezenas com menor probabilidade</h5>
+                            <div class="prediction-numbers">
+                                <!-- Números previstos seriam exibidos aqui -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-cycle" class="tab-content">
+                <h3>Ciclo de Dezenas Fora</h3>
+                
+                <div id="cycle-premium-content">
+                    <p>Esta estratégia exclusiva identifica 10 dezenas que ficam fora do sorteio e acompanha quando cada uma delas é sorteada nos concursos seguintes. Quando todas as 10 dezenas forem sorteadas, o ciclo se fecha e um novo ciclo se inicia.</p>
+                    
+                    <button class="btn btn-primary" onclick="analyzeCycle()">Analisar Ciclo Atual</button>
+                    
+                    <div id="cycle-analysis" class="cycle-analysis">
+                        <!-- Análise do ciclo será exibida aqui após clicar no botão -->
+                    </div>
+                </div>
+                
+                <div id="cycle-basic-content" style="display: none;">
+                    <div class="upgrade-message">
+                        <h4>Funcionalidade Premium</h4>
+                        <p>A estratégia de Ciclo de Dezenas Fora está disponível apenas para assinantes do plano Premium.</p>
+                        <a href="pagamento.html?plano=premium" class="btn btn-primary">Fazer Upgrade</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resultados">
+            <h2>Últimos Resultados</h2>
+            
+            <div class="results-container">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Concurso</th>
+                            <th>Data</th>
+                            <th>Dezenas Sorteadas</th>
+                            <th>Pares</th>
+                            <th>Ímpares</th>
+                            <th>Soma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3374</td>
+                            <td>23/04/2025</td>
+                            <td>
+                                <div class="mini-balls">
+                                    <span>04</span>
+                                    <span>05</span>
+                                    <span>06</span>
+                                    <span>07</span>
+                                    <span>08</span>
+                                    <span>10</span>
+                                    <span>11</span>
+                                    <span>12</span>
+                                    <span>14</span>
+                                    <span>15</span>
+                                    <span>17</span>
+                                    <span>18</span>
+                                    <span>20</span>
+                                    <span>21</span>
+                                    <span>24</span>
+                                </div>
+                            </td>
+                            <td>9</td>
+                            <td>6</td>
+                            <td>192</td>
+                        </tr>
+                        <tr>
+                            <td>3373</td>
+                            <td>22/04/2025</td>
+                            <td>
+                                <div class="mini-balls">
+                                    <span>01</span>
+                                    <span>03</span>
+                                    <span>04</span>
+                                    <span>06</span>
+                                    <span>10</span>
+                                    <span>12</span>
+                                    <span>13</span>
+                                    <span>14</span>
+                                    <span>15</span>
+                                    <span>17</span>
+                                    <span>19</span>
+                                    <span>21</span>
+                                    <span>22</span>
+                                    <span>23</span>
+                                    <span>24</span>
+                                </div>
+                            </td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>204</td>
+                        </tr>
+                        <!-- Mais resultados seriam exibidos aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section id="perfil">
+            <h2>Meu Perfil</h2>
+            
+            <div class="profile-container">
+                <div class="profile-info">
+                    <div class="form-group">
+                        <label for="profile-name">Nome:</label>
+                        <input type="text" id="profile-name" name="profile-name" value="Usuário Exemplo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profile-email">E-mail:</label>
+                        <input type="email" id="profile-email" name="profile-email" value="usuario@exemplo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profile-password">Nova senha:</label>
+                        <input type="password" id="profile-password" name="profile-password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profile-password-confirm">Confirmar nova senha:</label>
+                        <input type="password" id="profile-password-confirm" name="profile-password-confirm">
+                    </div>
+                    
+                    <button class="btn btn-primary">Salvar Alterações</button>
+                </div>
+                
+                <div class="subscription-info">
+                    <h3>Informações da Assinatura</h3>
+                    <p>Plano atual: <strong id="profile-plan">Premium</strong></p>
+                    <p>Data de início: <strong>24/04/2025</strong></p>
+                    <p>Validade: <strong>23/05/2025</strong></p>
+                    <p>Status: <strong class="status-active">Ativo</strong></p>
+                    
+                    <button class="btn">Renovar Assinatura</button>
+                    <button class="btn">Alterar Plano</button>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Gerador de Jogos da Lotofácil. Todos os direitos reservados.</p>
+            <p>Este site não tem vínculo com a Caixa Econômica Federal ou com as Loterias Caixa.</p>
+        </footer>
+    </div>
+    
+    <script src="../static/js/matrix.js"></script>
+    <script>
+        // Verificar tipo de plano do usuário (simulação)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulação de dados do usuário (em produção, isso viria do backend)
+            const userPlan = 'premium'; // ou 'basic'
+            const userName = 'Usuário Exemplo';
+            
+            // Atualizar informações do usuário
+            document.getElementById('user-name').textContent = userName;
+            document.getElementById('user-plan').textContent = userPlan === 'premium' ? 'Premium' : 'Básico';
+            document.getElementById('profile-plan').textContent = userPlan === 'premium' ? 'Premium' : 'Básico';
+            
+            // Configurar acesso à funcionalidade de Ciclo de Dezenas Fora
+            if (userPlan === 'basic') {
+                document.getElementById('cycle-option').disabled = true;
+                document.getElementById('cycle-premium-content').style.display = 'none';
+                document.getElementById('cycle-basic-content').style.display = 'block';
+            }
+        });
+        
+        // Função para alternar entre abas
+        function openTab(tabId) {
+            // Esconder todas as abas
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remover classe ativa de todos os botões
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Mostrar a aba selecionada
+            document.getElementById(tabId).classList.add('active');
+            
+            // Adicionar classe ativa ao botão clicado
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Função para gerar jogos (simulação)
+        document.getElementById('generate-button').addEventListener('click', function() {
+            const gamesContainer = document.getElementById('generated-games');
+            const gamesCount = parseInt(document.getElementById('games-count').value);
+            const strategy = document.getElementById('strategy').value;
+            
+            // Limpar jogos anteriores
+            gamesContainer.innerHTML = '';
+            
+            // Gerar jogos
+            for (let i = 0; i < gamesCount; i++) {
+                // Criar um novo jogo
+                const gameDiv = document.createElement('div');
+                gameDiv.className = 'generated-game';
+                
+                // Adicionar número do jogo
+                const gameNumber = document.createElement('div');
+                gameNumber.className = 'game-number';
+                gameNumber.textContent = 'Jogo ' + (i + 1);
+                gameDiv.appendChild(gameNumber);
+                
+                // Gerar 15 números aleatórios entre 1 e 25
+                const numbers = [];
+                while (numbers.length < 15) {
+                    const num = Math.floor(Math.random() * 25) + 1;
+                    if (!numbers.includes(num)) {
+                        numbers.push(num);
+                    }
+                }
+                
+                // Ordenar os números
+                numbers.sort((a, b) => a - b);
+                
+                // Criar bolas de loteria para cada número
+                const ballsContainer = document.createElement('div');
+                ballsContainer.className = 'lottery-numbers';
+                
+                for (let j = 0; j < numbers.length; j++) {
+                    const ball = document.createElement('div');
+                    ball.className = 'lottery-ball';
+                    ball.textContent = numbers[j].toString().padStart(2, '0');
+                    ballsContainer.appendChild(ball);
+                }
+                
+                gameDiv.appendChild(ballsContainer);
+                
+                // Adicionar o jogo ao container
+                gamesContainer.appendChild(gameDiv);
+            }
+        });
+    </script>
+</body>
+</html>

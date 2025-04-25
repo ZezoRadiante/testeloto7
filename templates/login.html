@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gerador de Jogos da Lotofácil</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Canvas para efeito Matrix será inserido via JavaScript -->
+    
+    <div class="container">
+        <header>
+            <div class="logo glow-text">Gerador de Jogos da Lotofácil</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#estrategias">Estratégias</a></li>
+                    <li><a href="index.html#planos">Planos</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="login-container">
+            <h1>Acesso à Plataforma</h1>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+            
+            <div class="login-options">
+                <p><a href="#" onclick="forgotPassword()">Esqueceu sua senha?</a></p>
+                <p>Ainda não tem uma conta? <a href="index.html#planos">Assine agora</a></p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Gerador de Jogos da Lotofácil. Todos os direitos reservados.</p>
+            <p>Este site não tem vínculo com a Caixa Econômica Federal ou com as Loterias Caixa.</p>
+        </footer>
+    </div>
+    
+    <script src="../static/js/matrix.js"></script>
+    <script>
+        // Função para lidar com o envio do formulário
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulação de login (em produção, isso seria uma chamada AJAX para o backend)
+            if (email && password) {
+                // Redirecionar para o dashboard após login bem-sucedido
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        });
+        
+        // Função para recuperação de senha
+        function forgotPassword() {
+            const email = prompt('Digite seu e-mail para receber instruções de recuperação de senha:');
+            
+            if (email) {
+                alert('Instruções de recuperação de senha foram enviadas para ' + email + '. Por favor, verifique sua caixa de entrada.');
+            }
+        }
+    </script>
+</body>
+</html>
