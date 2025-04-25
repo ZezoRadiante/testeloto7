@@ -39,14 +39,14 @@ class StripeIntegration:
         self.plans = {
             'basic': {
                 'name': 'Básico',
-                'price_id': 'price_1OxZ0LKmJJGy8UzVabcdef123',  # ID do preço no Stripe
+                'price_id': 'prod_SC0aCN51Y37Kmf',  # ID do preço no Stripe
                 'amount': 3990,  # em centavos
                 'interval': 'month',
                 'description': 'Plano Básico - Gerador de Jogos da Lotofácil'
             },
             'premium': {
                 'name': 'Premium',
-                'price_id': 'price_1OxZ0YKmJJGy8UzVxyzabc456',  # ID do preço no Stripe
+                'price_id': 'prod_SC0bx4P8HQeXfd',  # ID do preço no Stripe
                 'amount': 6990,  # em centavos
                 'interval': 'month',
                 'description': 'Plano Premium - Gerador de Jogos da Lotofácil'
