@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Testeloto</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Testeloto</h1>
+    {% if 'user' in session %}
+        <p>Olá, {{ session['user'] }}! <a href="{{ url_for('logout') }}">Sair</a></p>
+        <a href="{{ url_for('checkout', plano='basico') }}">Assinar Plano Básico</a><br>
+        <a href="{{ url_for('checkout', plano='premium') }}">Assinar Plano Premium</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login para assinar</a>
+    {% endif %}
+</body>
+</html>
